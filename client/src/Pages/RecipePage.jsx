@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {Col, Container, Row} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
-import { getRecipe } from "../API/recipe_api.js";
+import { getRecipe } from "../Utilities/recipe_api.js";
 import RecipeDisplay from "../Components/RecipeDisplay.jsx";
 
 
@@ -18,7 +18,7 @@ const RecipePage = () => {
     }, []);
 
     return (
-        <Container className="px-5">
+        <Container className="col-md-5 my-1">
             <RecipeDisplay recipe={recipe} />
         </Container>
     );
