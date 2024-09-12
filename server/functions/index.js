@@ -119,9 +119,12 @@ export const recipe = onRequest(async (req, res) => {
             recipeData.ingredients.forEach((ing) => { recipePromises.push(resolveIngredient(ing)); });
         }
         const values = await Promise.all(recipePromises);
+
         return res.json({
-            id: doc.id,
-            data: Object.assign({}, recipeData, { category: values.shift(), ingredients: values }),
+            '@context': "https://schema.org",
+            '@type': 'Recipe',
+            author: recipeData.from,
+            image: recipeData?.images?.map((image) => (image.url)),
         });
     } else {
         return res.status(404).send();
